@@ -1,0 +1,159 @@
+<?php
+// Incluye esto al principio de cada página que necesite saber si el usuario está logueado
+session_start();
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Desplegable</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="menu-container">
+                        <li class="menu-item">
+                <a class="menu-btn">Pinturas</a>
+                <ul class="submenu">
+                    <li class="submenu-item"><a href="automotriz.php" class="submenu-btn">Automotriz</a></li>
+                    <li class="submenu-item"><a href="hogarenia.php" class="submenu-btn">Hogareña</a></li>
+                    <li class="submenu-item"><a href="#" class="submenu-btn">Aerosoles</a></li>
+                </ul>
+            </li>
+            
+                        <li class="menu-item">
+                <a class="menu-btn">Insumos</a>
+                <ul class="submenu">
+                    <li class="submenu-item"><a href="#" class="submenu-btn">Para el hogar</a></li>
+                    <li class="submenu-item"><a href="#" class="submenu-btn">Profesional</a></li>
+                    <li class="submenu-item"><a href="#" class="submenu-btn">Vestimentas</a></li>
+                </ul>
+            </li>
+            
+                                    <li class="menu-item">
+                <a class="menu-btn">Mi Cuenta</a>
+                <ul class="submenu">
+                    <?php if (isset($_SESSION['usuario'])): ?>
+                        <li class="submenu-item"><a href="logout.php" class="submenu-btn">Cerrar Sesión</a></li>
+                    <?php else: ?>
+                        <li class="submenu-item"><a href="login.php" class="submenu-btn">Iniciar Sesión</a></li>
+                    <?php endif; ?>
+                </ul>
+            </li>
+        </ul>
+           </nav>
+    
+    <div class="toolbar">
+        <h1>Ofertas</h1>
+        <p>Bienvenido a la sección de ofertas. Aquí encontrarás los mejores descuentos y promociones en nuestros productos.</p>
+    </div>
+    
+    <div class="products-grid">
+        <div class="card">
+            <div class="badge">10% OFF</div>
+            <img src="img/Hidroesmalte_Satinado.jpg">
+            <div class="contentenido">
+                <div>
+                    <h2>Hidroesmalte Satinado</h2>
+                    <div class="prices">
+                        <span class="old">$29.000</span>
+                        <span class="new">$26.100</span>
+                    </div>
+                    <div class="subtitle">1Lt</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="badge">10% OFF</div>
+            <img src="img/Sellador_Sinteplast.jpg">
+            <div class="contentenido">
+                <div>
+                    <h2>Sellador Sinteplast</h2>
+                    <div class="prices">
+                        <span class="old">$7.500</span>
+                        <span class="new">$6.750</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="badge">10% OFF</div>
+            <img src="img/Acrilplast_Interior.jpg">
+            <div class="contentenido">
+                <div>
+                    <h2>Acriplast Interior</h2>
+                    <div class="prices">
+                        <span class="old">$9.840</span>
+                        <span class="new">$8.850</span>
+                    </div>
+                    <div class="subtitle">1Lt</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="badge">10% OFF</div>
+            <img src="img/Recuplast_Fibrado.jpg">
+            <div class="contentenido">
+                <div>
+                    <h2>Recuplast Fibrato</h2>
+                    <div class="prices">
+                        <span class="old">$13.000</span>
+                        <span class="new">$11.500</span>
+                    </div>
+                    <div class="subtitle">1Lt</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+        
+                    <div class="footer-form">
+                <h3>Contacto</h3>
+                <form action="#" method="post">
+                    <input type="text" placeholder="Nombre y Apellido" required>
+                    <input type="email" placeholder="Correo electrónico" required>
+                    <textarea placeholder="Escribí tu mensaje" rows="4" required></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+
+                        <div class="footer-section">
+                <h4>Institucionales</h4>
+                <ul>
+                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><a href="#">Sucursales</a></li>
+                    <li><a href="#">Promociones</a></li>
+                    <li><a href="#">Bases y Condiciones</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
+                    <li><a href="#">Cambios y devoluciones</a></li>
+                    <li><a href="#">Política de retiro</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p><a href="#">Formulario de contacto</a></p>
+                <p>+54 1234-5678</p>
+                <p>Lunes a Viernes: 8 a 12 y de 15 a 18hs </p>
+                <p>Sabados: 8 a 12hs</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; LaCasaDeLasPinturas 2025 - Todos los derechos reservados</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -647,7 +647,7 @@
                         <div class="factura-empresa">
                             <h3>LA CASA DE LAS PINTURAS</h3>
                             <p><strong>CUIT:</strong> 20-12345678-9</p>
-                            <p><strong>Dirección:</strong> Av. Principal 123</p>
+                            <p><strong>Dirección:</strong> Av. Fco de Haro 4249</p>
                             <p><strong>Teléfono:</strong> (376) 123-4567</p>
                             <p><strong>Condición IVA:</strong> Responsable Inscripto</p>
                         </div>

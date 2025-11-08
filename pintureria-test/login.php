@@ -29,29 +29,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $usuario, $usuario);
     $stmt->execute();
-    $result = $stmt->get_result();
+$result = $stmt->get_result();
 
-    if ($result->num_rows === 1) {
-        $row = $result->fetch_assoc();
+if ($result->num_rows === 1) {
+    $row = $result->fetch_assoc();
 
-        // Verificar contraseña
-        if (password_verify($contrasena, $row['contrasena'])) {
-            // Guardar sesión
-            $_SESSION['usuario'] = $row['usuario'];
-            $_SESSION['email'] = $row['email'];
-            header("Location: index.php"); // Página después del login
-            exit;
+    // Verificar contraseña
+    if (password_verify($contrasena, $row['contrasena'])) {
+        // Guardar sesión y rol del usuario
+        $_SESSION['usuario'] = $row['usuario'];
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['rol'] = $row['rol']; // <--- Aquí guardamos el rol
+
+        // Redirigir según el rol del usuario
+        if ($row['rol'] == 'empleado') {
+            header("Location: ver_stock.php");
         } else {
-            $error = "❌ Contraseña incorrecta.";
+            header("Location: index.php");
         }
+        exit;
     } else {
-        $error = "❌ Usuario no encontrado.";
+        $error = "❌ Contraseña incorrecta.";
     }
+} else {
+    $error = "❌ Usuario no encontrado.";
+}
 
-    $stmt->close();
-    $conn->close();
+$stmt->close();
+$conn->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

@@ -14,9 +14,10 @@ if ($conn->connect_error) {
 }
 
 // Recibir datos del formulario
-$usuario   = trim($_POST['usuario']);
-$email     = trim($_POST['email']);
+$usuario = trim($_POST['usuario']);
+$email = trim($_POST['email']);
 $contrasena = trim($_POST['contrasena']);
+$rol = 'cliente'; // Rol por defecto
 
 // Validar que no exista el usuario
 $sql = "SELECT * FROM usuarios WHERE usuario = ? OR email = ?";
@@ -34,14 +35,14 @@ if ($result->num_rows > 0) {
 $hash = password_hash($contrasena, PASSWORD_BCRYPT);
 
 // Insertar usuario
-$sql = "INSERT INTO usuarios (usuario, email, contrasena) VALUES (?, ?, ?)";
+$sql = "INSERT INTO usuarios (usuario, email, contrasena, rol) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sss", $usuario, $email, $hash);
+$stmt->bind_param("ssss", $usuario, $email, $hash, $rol);
 
 if ($stmt->execute()) {
     echo "✅ Registro exitoso. <a href='login.php'>Iniciar sesión</a>";
 } else {
-    echo "Error: " . $stmt->error;
+    echo "Error en el registro: " . $stmt->error;
 }
 
 $stmt->close();
